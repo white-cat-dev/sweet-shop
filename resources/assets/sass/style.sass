@@ -1,0 +1,418 @@
+@import "./variables"
+
+@import "~bootstrap/scss/bootstrap-reboot"
+@import "~bootstrap/scss/bootstrap-grid"
+@import "~bootstrap/scss/buttons"
+@import "~bootstrap/scss/images"
+@import "~bootstrap/scss/nav"
+@import "~bootstrap/scss/navbar"
+@import "~bootstrap/scss/transitions"
+@import "~bootstrap/scss/utilities"
+@import "~bootstrap/scss/forms"
+@import "~bootstrap/scss/tables"
+@import "~bootstrap/scss/alert"
+
+
+@import "../../../node_modules/owl.carousel/dist/assets/owl.carousel.css"
+
+@import "../fonts/FontAwesome/css/fontawesome-all.min.css"
+
+
+body 
+	background-color: #FFFFFF
+	font-family: Georgia
+	font-size: 18px
+
+div.content
+	padding: 20px 0px
+	min-height: 800px
+
+h1, h2, h3 
+	text-align: center
+	font-weight: normal
+	color: $dark-cherry;
+	line-height: 1em
+
+h1 
+	font-size: 2.5em
+	margin-top: 10px
+	margin-bottom: 10px
+
+
+.btn-link 
+	color: $dark-cherry
+	text-decoration: underline
+
+	&:hover 
+		color: $cherry
+
+
+button:active 
+	outline: 0
+	outline-offset: 0
+
+button:focus
+	outline: 0
+	outline-offset: 0
+
+div.buttons 
+	margin-top: 15px
+	text-align: center
+
+	form
+		display: inline-block
+
+input.field, textarea.field, select.field
+	width: 100%
+	margin: 5px auto
+	padding: 5px 15px
+	border-radius: 5px
+	border: none
+	box-shadow: 0px 0px 1px $dark-cherry
+	transition: 0.5s
+
+	&:focus 
+		outline: 0
+		outline-offset: 0
+		box-shadow: 0px 0px 5px 1px $cherry
+
+select.field
+	width: auto
+	margin-right: 10px
+
+div.auth-block
+	background-color: $light-cream
+	padding: 20px
+	border-radius: 10px
+
+	
+
+div.top-line 
+	position: relative
+	z-index: 10
+	top: 0
+	right: 0
+	left: 0
+	width: 100%
+	background-color: $cream
+	box-shadow: 0px 0px 13px 5px rgba(65, 0, 15, 0.1)
+
+	div.menu
+		text-align: right
+
+	div.logo img 
+		display: inline-block
+		width: 58px
+		margin: 0px
+	
+	div.logo p 
+		vertical-align: middle
+		display: inline-block
+		font-style: italic
+		line-height: 1.3em
+		color: $dark-cherry
+		margin: 0px
+		margin-left: 12px
+	
+	a.btn 
+		margin-left: 110px
+
+	button.navbar-toggler 
+		color: #FFFFFF
+		background-color: $cherry
+		border-color: $cherry
+		border: 1px solid transparent
+		padding: .025em .4em
+		font-size: 1.7em
+		line-height: 1.5
+		border-radius: .25em
+
+
+div.bottom-line 
+	position: relative
+	z-index: 10
+	box-shadow: 0px 0px 13px 5px rgba(65, 0, 15, 0.1)
+	background-color: $cream
+	padding: 15px 0px
+	text-align: center
+	margin-top: 30px
+	font-size: 0.9em
+
+
+
+div.main
+	position: relative
+
+	div.main-block 
+		padding: 50px 20px
+		border-radius: 10px
+		margin-top: 20px
+
+		&.dark-block
+			background-color: $cream
+
+		&.light-block 
+			background-color: $light-cream
+
+
+
+div.cakes
+	margin-top: 20px
+
+	div.cake-card
+		background-color: $light-cream
+		box-shadow: 1px 1px 1px 2px rgba(65, 0, 15, 0.1)
+		padding: 20px
+		border-radius: 10px
+		margin-bottom: 25px
+
+		img
+			border-radius: 10px
+			box-shadow: 0px 0px 3px 1px rgba(65, 0, 15, 0.1)
+			margin-bottom: 20px
+
+		h2 
+			text-align: center
+			font-size: 1.5em
+			margin-bottom: 15px
+		
+		h3
+			text-align: left
+			display: inline-block
+			width: auto
+			border-bottom: solid 1px $dark-cherry
+			font-size: 1.1em
+			margin-bottom: 5px
+			margin-top: 0px
+
+		p
+			line-height: 1.1em
+			margin-bottom: 20px
+
+		p.price
+			font-size: 1.2em
+
+		
+
+		ol 
+			padding-left: 0px
+			list-style-type: none
+
+			li 
+				line-height: 1.3em
+
+	div.bottom-buttons 
+		margin-top: 20px
+		text-align: center
+
+
+
+div.cake-main
+	background-color: $light-cream
+	box-shadow: 1px 1px 1px 2px rgba(65, 0, 15, 0.1)
+	padding: 20px
+	border-radius: 10px
+	margin-top: 20px
+	margin-bottom: 10px
+
+	img
+		border-radius: 10px
+		box-shadow: 0px 0px 3px 1px rgba(65, 0, 15, 0.1)
+		margin-bottom: 20px
+
+	label
+		text-align: left
+		display: block
+		width: auto
+		color: $dark-cherry
+		border-bottom: solid 1px $dark-cherry
+		font-size: 1.2em
+		margin-bottom: 10px
+		margin-top: 0px
+
+	p
+		line-height: 1.1em
+		margin-bottom: 20px
+
+	p.price
+		font-size: 1.2em
+
+	table.ingredients
+
+		td
+			border-top: none
+			vertical-align: middle
+			border-bottom: 1px solid $dark-cherry
+			padding: 7px 10px
+
+	div.add-ingredient
+		vertical-align: middle
+		padding: 10px
+
+		select.field
+			margin-left: 10px
+			width: auto
+			margin-right: 10px
+
+
+	input.small
+		margin-right: 10px
+		width: 60%
+
+	input.field.center
+		text-align: center
+
+div.bottom-buttons 
+	margin-top: 30px
+	text-align: center
+
+	form
+		display: inline-block
+
+	
+
+				
+
+div.ingredients
+
+	div.for-ingredients
+		margin-top: 10px
+		background-color: $light-cream
+		border-radius: 10px
+		padding: 10px
+		padding-top: 25px
+		margin-bottom: 15px
+		box-shadow: 1px 1px 1px 2px rgba(65, 0, 15, 0.1)
+
+		table
+			text-align: center
+			background-color: $light-cream
+
+			th
+				color: $dark-cherry
+				border-top: 1px solid $dark-cherry
+				border-bottom: 1px solid $dark-cherry
+
+			td
+				vertical-align: middle
+				border-bottom: 1px solid $dark-cherry
+
+	input
+		width: 50%
+		text-align: center
+		margin: 0px 5px
+
+	input.wide
+		width: 100%
+
+	div.buttons
+		margin-top: 25px
+		
+			
+
+div.orders
+
+	div.filters
+		text-align: center
+		background-color: $light-cream
+		box-shadow: 1px 1px 1px 2px rgba(65, 0, 15, 0.1)
+		border-radius: 10px
+		padding: 20px
+		margin: 10px 0
+
+		a 
+			margin-left: 20px
+
+	h2
+		border-bottom: 1px $dark-cherry solid
+		padding-bottom: 10px
+
+	div.order-card
+		background-color: $light-cream
+		padding: 30px
+		border-radius: 10px
+		box-shadow: 1px 1px 1px 2px rgba(65, 0, 15, 0.1)
+		margin-top: 20px
+		margin-bottom: 20px
+
+		p
+			margin-bottom: 0px
+
+			span.field-title
+				font-style: italic
+
+		p.title
+			font-size: 1.1em
+			color: $dark-cherry
+			margin-bottom: 0px
+			margin-top: 15px
+
+
+		div.block
+			background-color: #FFFFFF
+			border-radius: 5px
+			padding: 15px
+			box-shadow: 0px 0px 2px 1px rgba(65, 0, 15, 0.1)
+
+		ol 
+			padding-left: 0px
+			list-style-type: none
+			margin-bottom: 0px
+
+			li 
+				line-height: 1.4em
+
+		p.price
+			font-size: 1.2em
+			width: 95%
+			margin: 0 auto
+			margin-top: 15px
+			border-top: 1px solid $dark-cherry
+			text-align: right
+
+
+
+
+
+div.reviews
+	margin-top: 20px 
+
+	div.review-card 
+		padding: 15px
+		background-color: $light-cream
+		box-shadow: 1px 1px 1px 2px rgba(65, 0, 15, 0.1)
+		border-radius: 10px
+		margin-bottom: 25px
+
+		div 
+			padding-left: 8px
+			padding-right: 8px
+		
+		img 
+			border-radius: 10px
+		
+		p.name 
+			margin-bottom: 0px
+			font-size: 1.4rem
+			color: $dark-cherry
+		
+		h3 
+			margin-bottom: 15px
+			font-size: 1em
+			text-align: left
+			line-height: 1em
+			font-style: italic
+		
+		p.review 
+			font-size: 0.9em
+			line-height: 1.2em
+
+
+div.center-info
+	width: 90% 
+	margin: 10px auto
+	background-color: $light-cream
+	border-radius: 10px
+	padding: 30px
+	text-align: center
+	font-size: 1.1em

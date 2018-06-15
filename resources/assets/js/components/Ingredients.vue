@@ -40,7 +40,10 @@
 			</table>
 		</div>
 		<div class="alert alert-danger" v-if="error">
-			{{error}}
+			<p>{{error}}</p>
+			<ul>
+				<li v-for="error in errors">{{error[0]}}</li>
+			</ul>
 		</div>
 		<div class="alert alert-success" v-if="info">
 			{{info}}
@@ -64,6 +67,7 @@
 				},
 				addingItem: false,
 				error: '',
+				errors: '',
 				info: ''
 			}
 		},
@@ -139,6 +143,9 @@
 					})
 					.catch(function (resp) {
 						app.error = 'Не удалось добавить ингредиент';
+						app.errors = resp.response.data.errors;
+						console.log(resp.response.data.errors);
+						
 					});
 			},
 

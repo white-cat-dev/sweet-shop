@@ -47303,6 +47303,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
@@ -47315,6 +47318,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			},
 			addingItem: false,
 			error: '',
+			errors: '',
 			info: ''
 		};
 	},
@@ -47325,6 +47329,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		}).catch(function (resp) {
 			app.error = 'Не удалось загрузить ингредиенты';
 		});
+		if (count(this.ingredients) == 0) {
+			addingItem = true;
+		}
 	},
 
 
@@ -47376,6 +47383,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				}, 3000);
 			}).catch(function (resp) {
 				app.error = 'Не удалось добавить ингредиент';
+				app.errors = resp.response.data.errors;
+				console.log(resp.response.data.errors);
 			});
 		},
 		updateAll: function updateAll() {
@@ -47506,7 +47515,7 @@ var render = function() {
             }),
             _vm._v(" "),
             _vm.addingItem
-              ? _c("tr", [
+              ? _c("tr", { staticClass: "current-tr" }, [
                   _c("td", [_vm._v(_vm._s(_vm.ingredients.length + 1))]),
                   _vm._v(" "),
                   _c("td", [
@@ -47649,7 +47658,14 @@ var render = function() {
     _vm._v(" "),
     _vm.error
       ? _c("div", { staticClass: "alert alert-danger" }, [
-          _vm._v("\n\t\t" + _vm._s(_vm.error) + "\n\t")
+          _c("p", [_vm._v(_vm._s(_vm.error))]),
+          _vm._v(" "),
+          _c(
+            "ul",
+            _vm._l(_vm.errors, function(error) {
+              return _c("li", [_vm._v(_vm._s(error[0]))])
+            })
+          )
         ])
       : _vm._e(),
     _vm._v(" "),

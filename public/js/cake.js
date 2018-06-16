@@ -47286,6 +47286,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
@@ -47312,6 +47314,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	methods: {
 		increaseCount: function increaseCount(ingredient) {
 			ingredient.pivot.quantity = parseFloat(ingredient.pivot.quantity) + 1;
+			console.log(this.ingredients);
 		},
 		reduceCount: function reduceCount(ingredient) {
 			ingredient.pivot.quantity = parseFloat(ingredient.pivot.quantity) - 1;
@@ -47382,6 +47385,14 @@ var render = function() {
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(ingredient.title))]),
             _vm._v(" "),
+            _c("input", {
+              attrs: {
+                type: "hidden",
+                name: "ingredients[" + num + "][title]"
+              },
+              domProps: { value: ingredient.title }
+            }),
+            _vm._v(" "),
             _c("td", [
               _c(
                 "button",
@@ -47409,7 +47420,7 @@ var render = function() {
                 staticClass: "field",
                 attrs: {
                   type: "text",
-                  name: "ingredients[" + num + "][quantity]"
+                  name: "ingredients[" + num + "][pivot][quantity]"
                 },
                 domProps: { value: ingredient.pivot.quantity },
                 on: {
@@ -47441,6 +47452,14 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(ingredient.units))]),
+            _vm._v(" "),
+            _c("input", {
+              attrs: {
+                type: "hidden",
+                name: "ingredients[" + num + "][units]"
+              },
+              domProps: { value: ingredient.units }
+            }),
             _vm._v(" "),
             _c("td", [
               _c(

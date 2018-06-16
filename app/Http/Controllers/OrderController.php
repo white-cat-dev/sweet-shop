@@ -18,7 +18,7 @@ class OrderController extends Controller
     {
         $orders = Order::orderBy('execution_date', 'DESC')->get();
 
-        return view('orders')->with(['orders' => $orders, 'statuses' => Order::$statuses]);
+        return view('orders')->with(['orders' => $orders, 'statuses' => Order::$statuses, 'curstatus' => 0]);
     }
 
 
@@ -26,7 +26,7 @@ class OrderController extends Controller
     {
         $orders = Order::where('status', '=', $status)->get();
 
-        return view('orders')->with(['orders' => $orders, 'statuses' => Order::$statuses]);
+        return view('orders')->with(['orders' => $orders, 'statuses' => Order::$statuses, 'curstatus' => $status]);
     }
 
 
@@ -51,8 +51,9 @@ class OrderController extends Controller
     {
         $order = Order::findOrFail($id);
 
+        $order->cakes()->detach();
         $order->delete();
 
-        return redirect('/cakes');
+        return redirect('/orders');
     }
 }

@@ -30,6 +30,7 @@ Route::put('/ingredients', 'IngredientController@updateAll');
 Route::get('/orders', 'OrderController@index');
 Route::get('/orders/status={status}', 'OrderController@findStatus');
 Route::put('/order/{id}', 'OrderController@update');
+Route::delete('/order/{id}', 'OrderController@delete');
 
 Route::get('/reviews', 'ReviewController@index');
 Route::delete('/review/{id}', 'ReviewController@delete');

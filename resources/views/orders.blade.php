@@ -7,11 +7,11 @@
 	<div class="orders">
 		<div class="filters">
 			Статус заказа:
-			<a href="/orders/status=1" class="btn-link">Новый</a>
-			<a href="/orders/status=2" class="btn-link">Текущий</a>
-			<a href="/orders/status=3" class="btn-link">Отклоненный</a>
-			<a href="/orders/status=4" class="btn-link">Выполненный</a>
-			<a href="/orders" class="btn-link">Все</a>
+			<a href="/orders/status=1" class="btn-link {{ $curstatus == 1 ? 'current' : ''}}">Новый</a>
+			<a href="/orders/status=2" class="btn-link {{ $curstatus == 2 ? 'current' : ''}}">Текущий</a>
+			<a href="/orders/status=3" class="btn-link {{ $curstatus == 3 ? 'current' : ''}}">Отклоненный</a>
+			<a href="/orders/status=4" class="btn-link {{ $curstatus == 4 ? 'current' : ''}}">Выполненный</a>
+			<a href="/orders" class="btn-link {{ $curstatus == 0 ? 'current' : ''}}">Все</a>
 		</div>
 		<div class="row">
 			@forelse($orders as $order)
@@ -38,9 +38,11 @@
 					<p class="title">Состав заказа</p>
 					<div class="block">
 						<ol>
-							@foreach($order->cakes as $num => $cake)
+							@forelse($order->cakes as $num => $cake)
 							<li>{{$num+1}}) {{$cake->title}} - {{$cake->price}} руб. ({{$cake->pivot->quantity+0}} шт)</li>
-							@endforeach
+							@empty
+							(Кажется, торты были удалены из каталога)
+							@endforelse
 						</ol>
 						<p class="price">{{$order->cost}} руб.</p>
 					</div>

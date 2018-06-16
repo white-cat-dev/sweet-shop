@@ -20,7 +20,7 @@ mix.js('resources/assets/js/script.js', 'public/js')
 
 mix.browserSync(
     {
-        proxy: "sweet-shop.dev",
+        proxy: "sweet-shop",
         notify: false,
         ui: false
     }

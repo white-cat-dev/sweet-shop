@@ -6,12 +6,14 @@
 					<input type="hidden" :name="'ingredients['+num+'][id]'" :value="ingredient.id">
 					<td>{{num+1}}</td>
 					<td>{{ingredient.title}}</td>
+					<input type="hidden" :name="'ingredients['+num+'][title]'" :value="ingredient.title">
 					<td>
 						<button type="button" class="btn btn-link" v-on:click="reduceCount(ingredient)"><i class="fas fa-minus"></i></button>
-						<input type="text" :name="'ingredients['+num+'][quantity]'" v-model="ingredient.pivot.quantity" v-on:change="validate(ingredient)" class="field">
+						<input type="text" :name="'ingredients['+num+'][pivot][quantity]'" v-model="ingredient.pivot.quantity" v-on:change="validate(ingredient)" class="field">
 						<button type="button" class="btn btn-link" v-on:click="increaseCount(ingredient)"><i class="fas fa-plus"></i></button>
 					</td>
 					<td>{{ingredient.units}}</td>
+					<input type="hidden" :name="'ingredients['+num+'][units]'" :value="ingredient.units">
 					<td><button type="button" class="btn btn-primary btn-sm" v-on:click="deleteItem(ingredient.id, num)"><i class="fas fa-trash-alt"></i> Удалить</button></td>
 				</tr>
 			</tbody>
@@ -58,6 +60,7 @@
 		methods: {
 			increaseCount(ingredient) {
 				ingredient.pivot.quantity = parseFloat(ingredient.pivot.quantity) + 1;
+				console.log(this.ingredients);
 			},
 
 			reduceCount(ingredient) {

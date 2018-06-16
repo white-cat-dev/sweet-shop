@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Cake;
 use App\Ingredient;
+use App\Image;
 
 class CakeController extends Controller 
 {
@@ -52,15 +53,19 @@ class CakeController extends Controller
 
         $cake = Cake::create($cakeInfo);
 
-        foreach ($cakeInfo['ingredients'] as $ingredientInfo) {
-            $id = $ingredientInfo['id'];
+        if (!empty($cakeInfo['ingredients'])) {
 
-            $cake->ingredients()->attach([
-                $id => [
-                    'quantity' =>  $ingredientInfo['quantity']
-                ],
-            ]);
-        }
+            foreach ($cakeInfo['ingredients'] as $ingredientInfo) {
+                $id = $ingredientInfo['id'];
+
+                $cake->ingredients()->attach([
+                    $id => [
+                        'quantity' =>  $ingredientInfo['pivot']['quantity']
+                    ],
+                ]);
+            }
+        };
+        $cake->image()->associate(Image::first())->save();
 
         return redirect('/cakes');
     }
@@ -71,7 +76,8 @@ class CakeController extends Controller
         $this->validate($request, [
             'title' => 'required|max:255',
             'description' => 'required|max:255',
-            'price' => 'required|numeric'
+            'price' => 'required|numeric',
+            'weight' => 'required|numeric|between:0,99',
         ]);
 
         $cake = Cake::findOrFail($id);
@@ -93,12 +99,12 @@ class CakeController extends Controller
             if (!$ingredient) {
                 $cake->ingredients()->attach([
                     $id => [
-                        'quantity' =>  $ingredientInfo['quantity']
+                        'quantity' =>  $ingredientInfo['pivot']['quantity']
                     ],
                 ]);
             }
             else {
-                $ingredient->pivot->quantity = $ingredientInfo['quantity'];
+                $ingredient->pivot->quantity = $ingredientInfo['pivot']['quantity'];
                 $ingredient->pivot->save();
             }
         }
@@ -112,7 +118,9 @@ class CakeController extends Controller
     {
         $cake = Cake::findOrFail($id);
 
+        $cake->ingredients()->detach();
         $cake->delete();
+
 
         return redirect('/cakes');
     }

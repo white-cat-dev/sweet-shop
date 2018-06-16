@@ -5,7 +5,12 @@
 	<h1>Редактирование торта</h1>
 	<div class="row justify-content-center">
 		<div class="col-12 col-xl-10">
-			<form action="/cake/{{$cake->id}}" method="post" id="cake">
+			@if (count($errors) > 0)
+			  <div class="alert alert-danger">
+			    Не удалось сохранить торт
+			  </div>
+			@endif
+			<form action="/cake/{{$cake->id}}" method="POST" id="cake">
 				{{ csrf_field() }} 
 				{{ method_field('PUT') }}
 				<div class="cake-main">
@@ -17,11 +22,21 @@
 						<div class="col-12 col-md-6 col-lg-8">
 							<div class="form-group">
 								<label>Название</label>
-								<input type="text" class="field" value="{{$cake->title}}" name="title">
+								<input type="text" class="field" value="{{null !== old('title') ? old('title') : $cake->title}}" name="title">
+								@if ($errors->has('title'))
+									<p class="danger">
+									    {{ $errors->first('title') }}
+									</p>
+								@endif
 							</div>
 							<div class="form-group">
 								<label>Описание</label>
-								<textarea class="field" rows="5" name="description">{{$cake->description}}</textarea>
+								<textarea class="field" rows="5" name="description">{{null !== old('description') ? old('description') : $cake->description}}</textarea>
+								@if ($errors->has('description'))
+									<p class="danger">
+									    {{ $errors->first('description') }}
+									</p>
+								@endif
 							</div>
 						</div>
 					</div>
@@ -29,13 +44,23 @@
 						<div class="col-12 col-md-6">
 							<div class="form-group">
 								<label>Вес</label>
-								<input type="text" value="{{$cake->weight}}" class="field small" name="weight"> кг
+								<input type="text" value="{{ null !== old('weight') ? old('weight') : $cake->weight}}" class="field small" name="weight"> кг
+								@if ($errors->has('weight'))
+									<p class="danger">
+									    {{ $errors->first('weight') }}
+									</p>
+								@endif
 							</div>
 						</div>
 						<div class="col-12 col-md-6">
 							<div class="form-group">
 								<label>Цена</label>
-								<input type="text" value="{{$cake->price}}" class="field small" name="price"> руб.
+								<input type="text" value="{{null !== old('price') ? old('price') : $cake->price}}" class="field small" name="price"> руб.
+								@if ($errors->has('price'))
+									<p class="danger">
+									    {{ $errors->first('price') }}
+									</p>
+								@endif
 							</div>
 						</div>
 					</div>
@@ -58,7 +83,11 @@
 </div>
 
 <script type="text/javascript">
-	window.ingredients = {!! json_encode($cake->ingredients) !!};
+	@if (old('ingredients'))
+		window.ingredients = {!! json_encode(old('ingredients')) !!};
+	@else 
+		window.ingredients = {!! json_encode($cake->ingredients) !!};
+	@endif
 </script>
 <script type="text/javascript" src="/js/cake.js"></script>
 

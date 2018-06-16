@@ -21,7 +21,7 @@
 						<td>{{ingredient.units}}</td>
 						<td><button class="btn btn-primary btn-sm" v-on:click="deleteItem(ingredient.id, num)"><i class="fas fa-trash-alt"></i> Удалить</button></td>
 					</tr>
-					<tr v-if="addingItem">
+					<tr v-if="addingItem" class="current-tr">
 						<td>{{ingredients.length+1}}</td>
 						<td><input type="text" v-model="newIngredient.title" class="field wide"></td>
 						<td>
@@ -80,6 +80,9 @@
 				.catch(function (resp) {
 					app.error = 'Не удалось загрузить ингредиенты';
 				});
+			if (count(this.ingredients) == 0) {
+				addingItem = true;
+			}
 		},
 
 
